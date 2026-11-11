@@ -6,9 +6,14 @@
   <title>Meta Dwi Putri Lestari | Beranda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/foto-profil.png">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/latihan.js" defer></script>
 </head>
+
 <body>
   <header>
     <div class="container navbar">
@@ -33,6 +38,7 @@
           </ul>
         </nav>
       </details>
+       <button type="button" id="tombol-tema" class="tombol-tema">Mode Gelap</button>
     </div>
   </header>
 
@@ -49,8 +55,9 @@
 
       <section class="kartu">
         <h2>Tentang Saya</h2>
-        <p>Saya tinggal di Blitar dan senang mencoba hal baru di dunia teknologi. Saya ingin bisa membuat website yang bermanfaat untuk sekolah dan UMKM di sekitar rumah.</p>
-      </section>
+        <p>Saya tinggal di Blitar dan senang mencoba hal baru di dunia teknologi. Saya ingin bisa membuat website yang
+          bermanfaat untuk sekolah dan UMKM di sekitar rumah.</p>
+      </section>        
 
       <div class="daftar-kartu">
         <section class="kartu">
@@ -71,57 +78,53 @@
             <li>Bekerja sesuai dengan jurusan yang dipilih</li>
           </ol>
         </section>
-
         <section class="kartu">
           <h2>Keahlian</h2>
-          <ul>
-            <li>HTML dasar (sedang dipelajari)</li>
-            <li>Mengetik cepat (sedang dipelajari)</li>
-            <li>Membuat design UI/UX (sedang dipelajari)</li>
-          </ul>
+          <ul id="daftar-skill"></ul>
+          <p id="jumlah-skill"></p>
+        </section>
+
+        <section class="kartu">
+          <h2>Jadwal Belajar</h2>
+          <table>
+            <caption>Jadwal belajar mandiri setiap minggu</caption>
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Kegiatan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Senin</td>
+                <td>19.00 - 20.00</td>
+                <td>Membaca/mengerjakan MAPEL apapun </td>
+              </tr>
+              <tr>
+                <td>Rabu</td>
+                <td>19.00 - 21.00</td>
+                <td>merangkum materi</td>
+              </tr>
+              <tr>
+                <td>Jumat</td>
+                <td>19.30 - 20.30</td>
+                <td>mengerjakan tugas praktik</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
       </div>
-
-      <section class="kartu">
-        <h2>Jadwal Belajar</h2>
-        <table>
-          <caption>Jadwal belajar mandiri setiap minggu</caption>
-          <thead>
-            <tr>
-              <th>Hari</th>
-              <th>Waktu</th>
-              <th>Kegiatan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Senin</td>
-              <td>19.00 - 20.00</td>
-              <td>Membaca/mengerjakan MAPEL apapun </td>
-            </tr>
-            <tr>
-              <td>Rabu</td>
-              <td>19.00 - 21.00</td>
-              <td>merangkum materi</td>
-            </tr>
-            <tr>
-              <td>Jumat</td>
-              <td>19.30 - 20.30</td>
-              <td>mengerjakan tugas praktik</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </div>
   </main>
-  <script src="js/latihan.js" defer></script>
-  <script src="js/logika.js" defer></script>
+
 
   <footer>
     <p>Kontak: <a href="mailto:metarpl176@gmail.com">metarpl176@gmail.com</a> |
       <a href="https://github.com/" target="_blank">GitHub</a> |
-      <a href="https://www.youtube.com/" target="_blank">YouTube</a></p>
+      <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+    </p>
     <p>&copy; 2026 Meta Dwi Putri Lestari. Dibuat di Kelas Industri UBIG.</p>
   </footer>
 </body>
+
 </html>

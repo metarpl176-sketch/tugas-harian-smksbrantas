@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meta Dwi Putri Lestari | Proyek</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
+
 <body>
   <header>
     <div class="container navbar">
@@ -33,6 +37,7 @@
           </ul>
         </nav>
       </details>
+      <button type="button" id="tombol-tema" class="tombol-tema">Mode Gelap</button>
     </div>
   </header>
 
@@ -40,26 +45,17 @@
     <div class="container">
       <section>
         <h2>Proyek Saya</h2>
-        <p>Kumpulan hasil belajar saya di Kelas Industri UBIG.</p>
+        <p>Proyek di halaman ini dibuat dengan HTML, CSS, dan JavaScript.
+          Pilih tobol kategori di atas untuk melihat proyek per bahasa.
+        </p>
 
         <div class="daftar-kartu">
-          <article class="kartu">
-            <h3>Halaman Profil Pertama</h3>
-            <img src="img/proyek-profil.png" alt="Tangkapan layar halaman profil Meta Dwi Putri Lestari" width="280">
-            <p>Halaman web pertama saya, berisi perkenalan, hobi, cita-cita, keahlian, dan kontak. Dibuat dengan HTML dasar di Minggu 01 dan juga CSS dasar di minggu 01.</p>
-          </article>
-
-          <article class="kartu">
-            <h3>Form Kontak</h3>
-            <img src="img/proyek-kontak.png" alt="Tangkapan layar form kontak berisi nama, email, nomor HP, keperluan, dan pesan" width="280">
-            <p>Form untuk menghubungi saya. Setiap isian memiliki label dan wajib diisi, sehingga browser menolak form yang masih kosong.</p>
-          </article>
-
-          <article class="kartu">
-            <h3>Tabel Jadwal Belajar</h3>
-            <img src="img/proyek-jadwal.png" alt="Tangkapan layar tabel jadwal belajar mandiri" width="280">
-            <p>Tabel berisi jadwal belajar mandiri saya setiap minggu, disusun dengan thead dan tbody.</p>
-          </article>
+          <div class="filter">
+            <button type="button" class="tombol-filter" id="filter-semua">Semua</button>
+            <button type="button" class="tombol-filter" id="filter-javascript">JavaScript</button>
+          </div>
+          <p id="jumlah-proyek"></p>
+          <div class="daftar-kartu" id="daftar-proyek"></div>
         </div>
       </section>
 
@@ -68,7 +64,8 @@
         <h2>Pertanyaan yang Sering Diajukan</h2>
         <details>
           <summary>Bahasa apa yang dipakai untuk membuat proyek ini?</summary>
-          <p>Semua proyek di halaman ini dibuat dengan HTML. Tampilannya akan saya rapikan dengan CSS mulai Minggu 03.</p>
+          <p>Semua proyek di halaman ini dibuat dengan HTML. Tampilannya akan saya rapikan dengan CSS mulai Minggu 03.
+          </p>
         </details>
         <details>
           <summary>Apakah saya menerima pesanan pembuatan website?</summary>
@@ -81,8 +78,10 @@
   <footer>
     <p>Kontak: <a href="mailto:metarpl176@gmail.com">metarpl176@gmail.com</a> |
       <a href="https://github.com/" target="_blank">GitHub</a> |
-      <a href="https://www.youtube.com/" target="_blank">YouTube</a></p>
+      <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+    </p>
     <p>&copy; 2026 Meta Dwi Putri Lestari. Dibuat di Kelas Industri UBIG.</p>
   </footer>
 </body>
+
 </html>

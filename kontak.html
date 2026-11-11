@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meta Dwi Putri Lestari | Kontak</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
+
 <body>
-  <header>
-    <div class="container navbar">
-      <h1>Meta Dwi Putri Lestari</h1>
-      <nav class="menu-laptop">
+<header>
+  <div class="container navbar">
+    <h1>Meta Dwi Putri Lestari</h1>
+    <nav class="menu-laptop">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="proyek.html">Proyek</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+        <li><a href="kalkulator.html">Kalkulator</a></li>
+      </ul>
+    </nav>
+    <!-- Tantangan: menu ponsel yang bisa dibuka-tutup -->
+    <details class="menu-ponsel">
+      <summary>Menu</summary>
+      <nav>
         <ul>
           <li><a href="index.html">Beranda</a></li>
           <li><a href="proyek.html">Proyek</a></li>
@@ -21,19 +36,9 @@
           <li><a href="kalkulator.html">Kalkulator</a></li>
         </ul>
       </nav>
-      <!-- Tantangan: menu ponsel yang bisa dibuka-tutup -->
-      <details class="menu-ponsel">
-        <summary>Menu</summary>
-        <nav>
-          <ul>
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="proyek.html">Proyek</a></li>
-            <li><a href="kontak.html">Kontak</a></li>
-            <li><a href="kalkulator.html">Kalkulator</a></li>
-          </ul>
-        </nav>
-      </details>
-    </div>
+    </details>
+    <button type="button" id="tombol-tema" class="tombol-tema">Mode Gelap</button>
+  </div>
   </header>
 
   <main>
@@ -66,7 +71,9 @@
           </p>
           <p>
             <label for="pesan">Pesan</label><br>
-            <textarea id="pesan" name="pesan" rows="5" cols="40" placeholder="Tulis pesanmu di sini" required></textarea>
+            <textarea id="pesan" name="pesan" rows="5" cols="40" maxlength="300" placeholder="Tulis pesanmu di sini"
+              required></textarea><br>
+            <span id="hitung-karakter" class="keterangan">0/300 karakter</span>
           </p>
           <button type="submit">Kirim Pesan</button>
         </form>
@@ -77,8 +84,10 @@
   <footer>
     <p>Kontak: <a href="mailto:andi.pratama@example.com">andi.pratama@example.com</a> |
       <a href="https://github.com/" target="_blank">GitHub</a> |
-      <a href="https://www.youtube.com/" target="_blank">YouTube</a></p>
+      <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+    </p>
     <p>&copy; 2026 Meta Dwi Putri Lestari. Dibuat di Kelas Industri UBIG.</p>
   </footer>
 </body>
+
 </html>
