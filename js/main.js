@@ -115,16 +115,29 @@ function tampilkanProyek(daftar) {
 function pasangFilter(idTombol, kategori) {
     const tombol = document.querySelector(idTombol);
     tombol.addEventListener("click", () => {
+         // Menghapus warna merah dari tombol sebelumnya
+        document.querySelector(".tombol-filter.aktif")
+            ?.classList.remove("aktif");
+
+        // Memberikan warna merah pada tombol yang diklik
+        tombol.classList.add("aktif");
+
+        // Menampilkan proyek sesuai kategori
         if (kategori === "Semua") {
             tampilkanProyek(proyek);
         } else {
-            tampilkanProyek(proyek.filter((item) => item.kategori ===
-                kategori));
+            tampilkanProyek(proyek.filter((item) =>
+                item.kategori === kategori
+            ));
         }
     });
 }
+
+
 if (daftarProyek) {
     tampilkanProyek(proyek);
     pasangFilter("#filter-semua", "Semua");
     pasangFilter("#filter-javascript", "JavaScript");
+    pasangFilter("#filter-css", "CSS");
+    pasangFilter("#filter-html", "HTML");
 }

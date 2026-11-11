@@ -1,4 +1,3 @@
-
 /* Gaya portofolio Meta Dwi Putri Lestari */
 
 /* 0. Variabel warna mode terang */
@@ -8,10 +7,10 @@
   --warna-aksen: #E63946;
   --warna-tautan: #E63946;
   --warna-latar: #F1FAEE;
-  --warna-teks:#483e3e;
+  --warna-teks: #483e3e;
   --warna-kartu: #FFFFFF;
   --warna-garis: #DDDDDD;
-  --warna-ikon-menu:#dddd;
+  --warna-ikon-menu: #dddd;
 }
 
 body.gelap {
@@ -22,7 +21,7 @@ body.gelap {
   --warna-teks: #E3E8EE;
   --warna-kartu: #24313f;
   --warna-garis: #34465A;
-  --warna-ikon-menu:#fff;
+  --warna-ikon-menu: #fff;
 }
 
 /* 1. Reset */
@@ -49,7 +48,9 @@ body {
   background-color: var(--warna-latar);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Poppins", Arial, sans-serif;
   color: var(--warna-judul);
   line-height: 1.3;
@@ -59,7 +60,9 @@ h2 {
   margin-bottom: 0.75rem;
 }
 
-p, ul, ol {
+p,
+ul,
+ol {
   margin-bottom: 1rem;
 }
 
@@ -198,7 +201,8 @@ caption {
   margin-bottom: 0.5rem;
 }
 
-th, td {
+th,
+td {
   border: 1px solid var(--warna-garis);
   padding: 0.5rem 0.75rem;
   text-align: left;
@@ -214,7 +218,9 @@ label {
   font-weight: 600;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   max-width: 22rem;
   padding: 0.6rem;
@@ -306,11 +312,18 @@ footer a {
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
+
 .tombol-filter {
   padding: 0.5rem 1rem;
   border: 2px solid var(--warna-garis);
   background-color: var(--warna-kartu);
   color: var(--warna-judul);
+}
+/* Tombol filter yang sedang aktif */
+.tombol-filter.aktif {
+    background-color: var(--warna-aksen);
+    color: #FFFFFF;
+    border-color: var(--warna-aksen);
 }
 .label {
   display: inline-block;
@@ -322,4 +335,3 @@ footer a {
   font-size: 0.85rem;
   font-weight: 600;
 }
-
