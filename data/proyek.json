@@ -1,0 +1,45 @@
+
+[
+  {
+    "judul": "Halaman Profil Pertama",
+    "kategori": "HTML",
+    "gambar": "img/proyek-profil.png",
+    "alt": "Tangkapan layar halaman profil Meta Dwi Putri Lestari",
+    "deskripsi": "Halaman web pertama saya, dibuat dengan HTML dasar."
+  },
+  {
+    "judul": "Form Kontak",
+    "kategori": "HTML",
+    "gambar": "img/proyek-kontak.png",
+    "alt": "Tangkapan layar form kontak berisi lima isian",
+    "deskripsi": "Form dengan label dan validasi bawaan browser."
+  },
+  {
+    "judul": "Tabel Jadwal Belajar",
+    "kategori": "HTML",
+    "gambar": "img/proyek-jadwal.png",
+    "alt": "Tangkapan layar tabel jadwal belajar mandiri",
+    "deskripsi": "Jadwal belajar mingguan dengan thead dan tbody."
+  },
+  {
+    "judul": "Portofolio Responsive",
+    "kategori": "CSS",
+    "gambar": "img/responsive-design.png",
+    "alt": "Tangkapan layar halaman portofolio",
+    "deskripsi": "Halaman portofolio yang responsif dengan CSS Flexbox."
+  },
+  {
+    "judul": "Kalkulator Nilai Rapor",
+    "kategori": "JavaScript",
+    "gambar": "img/proyek-kalkulator.png",
+    "alt": "Tangkapan layar kalkulator nilai rapor",
+    "deskripsi": "Kalkulator sederhana untuk menghitung nilai rapor."
+  },
+  {
+    "judul": "Lima Soal Logika",
+    "kategori": "JavaScript",
+    "gambar": "img/proyek-logika.png",
+    "alt": "Tangkapan layar hasil uji lima soal logika",
+    "deskripsi": "Lima fungsi logika yang masing-masing diuji 3 masukan."
+  }
+]
