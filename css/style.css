@@ -379,3 +379,11 @@ footer a {
         grid-template-columns: 1fr;
     }
 }
+
+.tambah-skill {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--warna-garis)
+}

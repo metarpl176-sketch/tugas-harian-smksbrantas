@@ -67,7 +67,7 @@ function tampilkanProyek(data) {
     data.forEach((item) => {
         const kartu = document.createElement("article");
         kartu.classList.add("kartu-proyek");
-
+ 
         const gambar = document.createElement("img");
         gambar.src = item.gambar;
         gambar.alt = item.alt;
@@ -194,3 +194,11 @@ async function ambilRepo() {
 if (daftarRepo) {
     ambilRepo();
 }
+
+// tombol tambah skill
+const keterangan = document.querySelector("#pesan-skill")
+const keahlian = document.querySelector("#daftar-skill")
+
+let tambahkeahlian = [];
+
+// fungsi menampilkan tambah ke
