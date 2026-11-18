@@ -204,3 +204,48 @@ if (daftarRepo) {
   );
   observer.observe(sectionRepo);
 }
+
+/* ============================================================
+   6. FITUR TAMBAH KEAHLIAN (Halaman Beranda)
+   ============================================================ */
+const tombolSkill = document.querySelector("#tombol-skill");
+const inputSkill = document.querySelector("#input-skill");
+const levelBaru = document.querySelector("#level-baru");
+const pesanSkill = document.querySelector("#pesan-skill");
+
+// Pastikan elemen ada sebelum menjalankan fungsi (agar tidak error di halaman lain)
+if (tombolSkill && daftarSkill) {
+  tombolSkill.addEventListener("click", () => {
+    const namaSkill = inputSkill.value.trim();
+    const levelSkill = levelBaru.value;
+
+    // Validasi: Cek apakah input kosong
+    if (namaSkill === "") {
+      pesanSkill.textContent = "Nama keahlian tidak boleh kosong!";
+      pesanSkill.style.color = "#E63946"; // Warna merah
+      return; // Hentikan proses
+    }
+
+    // 1. Buat elemen list baru
+    const itemBaru = document.createElement("li");
+    itemBaru.textContent = `${namaSkill} (${levelSkill})`;
+
+    // 2. Tambahkan ke daftar di HTML
+    daftarSkill.appendChild(itemBaru);
+
+    // 3. Update jumlah keahlian (hitung jumlah <li> di dalam <ul>)
+    const totalSkillSekarang = daftarSkill.children.length;
+    jumlahSkill.textContent = `Ada ${totalSkillSekarang} keahlian yang sedang saya kembangkan.`;
+
+    // 4. Reset form dan beri pesan sukses
+    inputSkill.value = ""; // Kosongkan input
+    levelBaru.value = "Pemula"; // Kembalikan ke default
+    pesanSkill.textContent = "Keahlian berhasil ditambahkan!";
+    pesanSkill.style.color = "green";
+    
+    // Hilangkan pesan setelah 3 detik
+    setTimeout(() => {
+        pesanSkill.textContent = "";
+    }, 3000);
+  });
+}
