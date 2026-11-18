@@ -1,204 +1,206 @@
 // JavaScript portofolio Meta Dwi Putri Lestari
-// Dipasang diketiga halaman dengan defer
+// Versi optimasi performa — dipasang di semua halaman dengan defer
 
-// 1. Daftar keahlian (halaman Beranda), data dari data / keahlian.json
+/* ============================================================
+   1. DAFTAR KEAHLIAN (hanya halaman Beranda)
+   ============================================================ */
 const daftarSkill = document.querySelector("#daftar-skill");
 const jumlahSkill = document.querySelector("#jumlah-skill");
+
 async function muatKeahlian() {
-    try {
-        const response = await fetch("data/keahlian.json");
-        if (!response.ok) {
-            throw new Error(`Status ${response.status}`);
-        }
-        const skills = await response.json();
-        skills.forEach((skill) => {
-            const item = document.createElement("li");
-            item.textContent = `${skill.nama} (${skill.level})`;
-            daftarSkill.appendChild(item);
-        });
-        jumlahSkill.textContent = `Ada ${skills.length} keahlian yang 
-sedang saya kembangkan.`;
-    } catch (error) {
-        jumlahSkill.textContent = "Daftar keahlian gagal dimuat.";
-        console.error(error);
-    }
+  try {
+    const response = await fetch("data/keahlian.json");
+    if (!response.ok) throw new Error(`Status ${response.status}`);
+    const skills = await response.json();
+
+    // Gunakan DocumentFragment agar DOM hanya di-update sekali
+    const frag = document.createDocumentFragment();
+    skills.forEach((skill) => {
+      const item = document.createElement("li");
+      item.textContent = `${skill.nama} (${skill.level})`;
+      frag.appendChild(item);
+    });
+    daftarSkill.appendChild(frag);
+
+    jumlahSkill.textContent = `Ada ${skills.length} keahlian yang sedang saya kembangkan.`;
+  } catch (error) {
+    jumlahSkill.textContent = "Daftar keahlian gagal dimuat.";
+    console.error(error);
+  }
 }
-if (daftarSkill) {
-    muatKeahlian();
-}
-// 2. Tema gelap (semua halaman)
+
+if (daftarSkill) muatKeahlian();
+
+/* ============================================================
+   2. TEMA GELAP (semua halaman)
+   ============================================================ */
 const tombolTema = document.querySelector("#tombol-tema");
 
 if (tombolTema) {
-    tombolTema.addEventListener("click", () => {
-        document.body.classList.toggle("gelap");
+  // Pulihkan tema dari localStorage agar tidak "flash" saat reload
+  if (localStorage.getItem("tema") === "gelap") {
+    document.body.classList.add("gelap");
+    tombolTema.textContent = "Mode Terang";
+  }
 
-        if (document.body.classList.contains("gelap")) {
-            tombolTema.textContent = "Mode Terang";
-        } else {
-            tombolTema.textContent = "Mode Gelap";
-        }
-    });
+  tombolTema.addEventListener("click", () => {
+    document.body.classList.toggle("gelap");
+    const isGelap = document.body.classList.contains("gelap");
+    tombolTema.textContent = isGelap ? "Mode Terang" : "Mode Gelap";
+    localStorage.setItem("tema", isGelap ? "gelap" : "terang");
+  });
 }
 
-// 3. Penghitung karakter pesan (halaman Kontak)
+/* ============================================================
+   3. PENGHITUNG KARAKTER PESAN (halaman Kontak)
+   ============================================================ */
 const kotakPesan = document.querySelector("#pesan");
 const hitungKarakter = document.querySelector("#hitung-karakter");
+
 if (kotakPesan) {
-    kotakPesan.addEventListener("input", () => {
-        hitungKarakter.textContent = `${kotakPesan.value.length}/300 
-karakter`;
-    });
+  kotakPesan.addEventListener("input", () => {
+    hitungKarakter.textContent = `${kotakPesan.value.length}/300 karakter`;
+  });
 }
 
-// 4. Daftar proyek dan filter (halaman proyek)
-
- // 4. Daftar proyek dan filter
-
+/* ============================================================
+   4. DAFTAR PROYEK + FILTER (halaman Proyek)
+   ============================================================ */
 const daftarProyek = document.querySelector("#daftar-proyek");
 const jumlahProyek = document.querySelector("#jumlah-proyek");
 
 let proyek = [];
 
-// Fungsi menampilkan proyek
 function tampilkanProyek(data) {
-    daftarProyek.innerHTML = "";
+  daftarProyek.innerHTML = "";
 
-    data.forEach((item) => {
-        const kartu = document.createElement("article");
-        kartu.classList.add("kartu-proyek");
- 
-        const gambar = document.createElement("img");
-        gambar.src = item.gambar;
-        gambar.alt = item.alt;
+  // DocumentFragment: kurangi reflow/repaint
+  const frag = document.createDocumentFragment();
 
-        const judul = document.createElement("h3");
-        judul.textContent = item.judul;
+  data.forEach((item, index) => {
+    const kartu = document.createElement("article");
+    kartu.classList.add("kartu-proyek");
 
-        const kategori = document.createElement("p");
-        kategori.textContent = item.kategori;
+    const gambar = document.createElement("img");
+    gambar.src = item.gambar;
+    gambar.alt = item.alt;
+    // ✅ Cegah layout shift: beri ukuran eksplisit
+    gambar.width = 400;
+    gambar.height = 200;
+    // ✅ Gambar pertama dimuat prioritas, sisanya lazy
+    if (index === 0) {
+      gambar.fetchPriority = "high";
+    } else {
+      gambar.loading = "lazy";
+    }
+    gambar.decoding = "async";
 
-        const deskripsi = document.createElement("p");
-        deskripsi.textContent = item.deskripsi;
+    const judul = document.createElement("h3");
+    judul.textContent = item.judul;
 
-        kartu.appendChild(gambar);
-        kartu.appendChild(judul);
-        kartu.appendChild(kategori);
-        kartu.appendChild(deskripsi);
+    const kategori = document.createElement("p");
+    kategori.textContent = item.kategori;
 
-        daftarProyek.appendChild(kartu);
-    });
+    const deskripsi = document.createElement("p");
+    deskripsi.textContent = item.deskripsi;
 
-    jumlahProyek.textContent = `Ada ${data.length} proyek.`;
+    kartu.append(gambar, judul, kategori, deskripsi);
+    frag.appendChild(kartu);
+  });
+
+  daftarProyek.appendChild(frag);
+  jumlahProyek.textContent = `Ada ${data.length} proyek.`;
 }
 
-// Fungsi filter proyek
 function pasangFilter(id, kategori) {
-    const tombol = document.querySelector(id);
+  const tombol = document.querySelector(id);
+  if (!tombol) return;
 
-    if (tombol) {
-        tombol.addEventListener("click", () => {
-            if (kategori === "Semua") {
-                tampilkanProyek(proyek);
-            } else {
-                const hasilFilter = proyek.filter(
-                    (item) => item.kategori === kategori
-                );
+  tombol.addEventListener("click", () => {
+    // Tandai tombol aktif
+    document.querySelectorAll(".tombol-filter").forEach((b) =>
+      b.classList.remove("aktif")
+    );
+    tombol.classList.add("aktif");
 
-                tampilkanProyek(hasilFilter);
-            }
-        });
-    }
+    const hasil =
+      kategori === "Semua"
+        ? proyek
+        : proyek.filter((item) => item.kategori === kategori);
+
+    tampilkanProyek(hasil);
+  });
 }
 
-// Fungsi mengambil data JSON
 async function muatProyek() {
-    try {
-        jumlahProyek.textContent = "Memuat proyek...";
-
-        const response = await fetch("data/proyek.json");
-
-        if (!response.ok) {
-            throw new Error(`Status ${response.status}`);
-        }
-
-        proyek = await response.json();
-
-        tampilkanProyek(proyek);
-
-    } catch (error) {
-        jumlahProyek.textContent = "Daftar proyek gagal dimuat.";
-        console.error("Error:", error);
-    }
+  try {
+    jumlahProyek.textContent = "Memuat proyek...";
+    const response = await fetch("data/proyek.json");
+    if (!response.ok) throw new Error(`Status ${response.status}`);
+    proyek = await response.json();
+    tampilkanProyek(proyek);
+  } catch (error) {
+    jumlahProyek.textContent = "Daftar proyek gagal dimuat.";
+    console.error("Error:", error);
+  }
 }
 
-// Jalankan hanya pada halaman proyek
 if (daftarProyek) {
-    pasangFilter("#filter-semua", "Semua");
-    pasangFilter("#filter-javascript", "JavaScript");
-    pasangFilter("#filter-css", "CSS");
-    pasangFilter("#filter-html", "HTML");
-
-    muatProyek();
+  pasangFilter("#filter-semua", "Semua");
+  pasangFilter("#filter-javascript", "JavaScript");
+  pasangFilter("#filter-css", "CSS");
+  pasangFilter("#filter-html", "HTML");
+  muatProyek();
 }
 
-
-
-
-
-
- // 5. Repositori GitHub terbaru
-
-const username = "metarpl176-sketch";
-const alamatRepo = `https://api.github.com/users/${username}/repos`;
-const pilihan = "?sort=updated&per_page=6";
-
+/* ============================================================
+   5. REPOSITORI GITHUB — LAZY LOAD via IntersectionObserver
+   ============================================================ */
 const daftarRepo = document.querySelector("#daftar-repo");
 const statusRepo = document.querySelector("#status-repo");
 
 async function ambilRepo() {
-    statusRepo.textContent = "Memuat...";
+  statusRepo.textContent = "Memuat...";
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/metarpl176-sketch/repos?sort=updated&per_page=6"
+    );
+    if (!response.ok) throw new Error(`Status ${response.status}`);
+    const repos = await response.json();
 
-    try {
-        const response = await fetch(alamatRepo + pilihan);
+    const frag = document.createDocumentFragment();
+    repos.forEach((repo) => {
+      const item = document.createElement("li");
+      const tautan = document.createElement("a");
+      tautan.href = repo.html_url;
+      tautan.target = "_blank";
+      tautan.rel = "noopener noreferrer";
+      tautan.textContent = repo.name;
+      item.appendChild(tautan);
+      frag.appendChild(item);
+    });
 
-        if (!response.ok) {
-            throw new Error(`Status ${response.status}`);
-        }
-
-        const repos = await response.json();
-
-        daftarRepo.innerHTML = "";
-
-        repos.forEach((repo) => {
-            const item = document.createElement("li");
-            const tautan = document.createElement("a");
-
-            tautan.href = repo.html_url;
-            tautan.target = "_blank";
-            tautan.textContent = repo.name;
-
-            item.appendChild(tautan);
-            daftarRepo.appendChild(item);
-        });
-
-        statusRepo.textContent =
-            `${repos.length} repositori yang terakhir diperbarui:`;
-
-    } catch (error) {
-        statusRepo.textContent = "Daftar repositori gagal dimuat.";
-        console.error("Error:", error);
-    }
+    daftarRepo.appendChild(frag);
+    statusRepo.textContent = `${repos.length} repositori yang terakhir diperbarui:`;
+  } catch (error) {
+    statusRepo.textContent = "Daftar repositori gagal dimuat.";
+    console.error("Error:", error);
+  }
 }
 
 if (daftarRepo) {
-    ambilRepo();
+  // ✅ Hanya panggil API saat section repo hampir terlihat di layar
+  const sectionRepo = daftarRepo.closest("section");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          ambilRepo();
+          observer.disconnect();
+        }
+      });
+    },
+    { rootMargin: "200px" }
+  );
+  observer.observe(sectionRepo);
 }
-
-// tombol tambah skill
-const keterangan = document.querySelector("#pesan-skill")
-const keahlian = document.querySelector("#daftar-skill")
-
-let tambahkeahlian = [];
-
-// fungsi menampilkan tambah ke
